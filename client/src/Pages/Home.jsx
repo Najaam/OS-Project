@@ -19,7 +19,7 @@ const Background = () => {
   return (
     <div
       className="position-relative w-100 vh-100 bg-dark d-flex align-items-center justify-content-center"
-      style={{ overflow: "hidden", cursor: "pointer" }}
+      style={{ overflow: "hidden", }}
     >
       {/* Background Animation */}
       <motion.div
