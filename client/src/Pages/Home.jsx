@@ -65,7 +65,7 @@ const Background = () => {
           custom={0}
           style={{ color: "#fff" }}
         >
-          Welcome to Apka Apna OS
+          Welcome to Jade OS
         </motion.h1>
         <motion.p
           className="mt-3 fs-5"
@@ -75,7 +75,7 @@ const Background = () => {
           custom={2}
           style={{ color: "#fff" }}
         >
-          Your simulated operating system in the browser.
+          Your simulated OS in the browser.
         </motion.p>
         <motion.button
           className="btn prism-btn me-3 px-4 py-2"
