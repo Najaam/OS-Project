@@ -18,7 +18,7 @@ function SigninForm() {
             <TransParentInputs
             label="Username"
             height="40px"
-            width="250px"
+            width="220px"
             fontSize="25px"
             />
           </div>
@@ -26,7 +26,7 @@ function SigninForm() {
             <TransParentInputs 
             label="Password"
             height="40px"
-            width="250px"
+            width="220px"
             fontSize="25px"
             />
           </div>
