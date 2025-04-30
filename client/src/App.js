@@ -3,24 +3,10 @@ import Forgetform from './Pages/Forgetform';
 import SigninForm from './Pages/SigninForm';
 import SignUpform from './Pages/SignUpform';
 import Welcome from './Pages/Welcome';
-import Weclome from './Pages/Welcome';
 import { motion } from "framer-motion";
 import { BrowserRouter as Router, Routes, Route } from "react-router";
 
 function App() {
-  
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    }),
-  };
   return (
 
     <div className="App">

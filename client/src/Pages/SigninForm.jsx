@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import TransParentButton from "../Components/TransParentButton";
 import TransParentInputs from "../Components/TransParentInputs";
 
 function SigninForm() {
+  
   return (
     <div
       className="position-relative w-100 vh-100 d-flex align-items-center justify-content-center"
@@ -38,12 +40,22 @@ function SigninForm() {
             fontSize="1.2rem"
           />
   <div className="d-flex justify-content-between mt-4 small text-white">
-  <Link to="/forgot" className="hover:underline text-white">
+  <motion.div
+   whileHover={{ x: -5, y:-5 }} 
+   transition={{ type: "spring", stiffness: 300 }}
+>
+  <Link to="/forgot" className="text-white text-decoration-none">
     Forgot Password?
   </Link>
-  <Link to="/newuser" className="hover:underline text-white">
+  </motion.div>
+  <motion.div
+   whileHover={{ x: -5, y:-5 }} 
+   transition={{ type: "spring", stiffness: 300 }}
+>
+  <Link to="/newuser" className="text-decoration-none text-white">
       New User
   </Link>
+</motion.div>
 </div>
 
         </form>

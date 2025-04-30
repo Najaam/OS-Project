@@ -32,7 +32,7 @@ function TransParentInputs({
     },
     focused: {
       x: -20,
-      scale: 1.2,
+      scale: 1.1,
       transition: {
         duration: 0.3,
         ease: "easeInOut",
