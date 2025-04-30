@@ -59,15 +59,15 @@ const Welcome = () => {
             <TransParentButton
               Name="Existing User"
               route="/existinguser"
-              height="50px"
-              width="170px"
-              fontSize="1.2rem"
+             height="3.1rem"
+              width="9.0rem"
+              fontSize="1.0rem"
             />
             <TransParentButton
               Name="New User"
-              height="50px"
-              width="170px"
-              fontSize="1.2rem"
+              height="3.1rem"
+              width="9.0rem"
+              fontSize="1.0rem"
             />
           </div>
         </div>
