@@ -8,7 +8,7 @@ function SigninForm() {
     <div
       className="position-relative w-100 vh-100 d-flex align-items-center justify-content-center"
       style={{ backgroundColor: "transparent", overflow: "hidden" }}
-    ><div className="rounded p-4 ">
+    ><div className="rounded p-4 bg-dark bg-opacity-75 backdrop-blur shadow-lg">
         <h1 className="text-3xl font-bold text-center text-white mb-6">
           Sign In
         </h1>
