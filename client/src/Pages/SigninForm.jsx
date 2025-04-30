@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import TransParentButton from "../Components/TransParentButton";
 import TransParentInputs from "../Components/TransParentInputs";
 
@@ -7,27 +8,27 @@ function SigninForm() {
     <div
       className="position-relative w-100 vh-100 d-flex align-items-center justify-content-center"
       style={{ backgroundColor: "transparent", overflow: "hidden" }}
-    >
-      <div className="rounded-lg p-8 w-96 bg-opacity-80 bg-gray-800">
+    ><div className="rounded p-4 bg-dark bg-opacity-75 backdrop-blur shadow-lg">
         <h1 className="text-3xl font-bold text-center text-white mb-6">
           Sign In
         </h1>
         <form>
-          <div className="mb-4">
+          <div className="mx-4 mt-4 p-6 rounded-lg bg-gray-800/50 backdrop-blur-md">
             
             <TransParentInputs
             label="Username"
             height="40px"
             width="220px"
-            fontSize="25px"
+            fontSize="20px"
             />
           </div>
           <div className="mb-4">
             <TransParentInputs 
             label="Password"
             height="40px"
+            marginLeft="8px"
             width="220px"
-            fontSize="25px"
+            fontSize="20px"
             />
           </div>
           <TransParentButton
@@ -36,14 +37,15 @@ function SigninForm() {
             width="120px"
             fontSize="1.2rem"
           />
-          <div className="flex justify-between items-center mt-4 text-sm text-white">
-            <a href="/forgot-password" className="hover:underline">
-              Forgot Password?
-            </a>
-            <a href="/signup" className="hover:underline text-blue-400">
-              Sign Up
-            </a>
-          </div>
+  <div className="d-flex justify-content-between mt-4 small text-white">
+  <Link to="/forgot" className="hover:underline text-white">
+    Forgot Password?
+  </Link>
+  <Link to="/newuser" className="hover:underline text-white">
+      New User
+  </Link>
+</div>
+
         </form>
       </div>
     </div>

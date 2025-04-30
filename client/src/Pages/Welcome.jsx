@@ -4,12 +4,7 @@ import TransParentButton from "../Components/TransParentButton";
 import existuser from "./SigninForm";
 
 const Welcome = () => {
-  //Logics
-  const [showSignin, setShowSignin] = useState(false);
 
-  const handleSigninClick = () => {
-    setShowSignin(true); // Show the SigninForm
-  };
 
   const textVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -65,6 +60,7 @@ const Welcome = () => {
             />
             <TransParentButton
               Name="New User"
+              route="/newuser"
               height="3.1rem"
               width="9.0rem"
               fontSize="1.0rem"

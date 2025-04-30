@@ -1,5 +1,7 @@
 import './App.css';
+import Forgetform from './Pages/Forgetform';
 import SigninForm from './Pages/SigninForm';
+import SignUpform from './Pages/SignUpform';
 import Welcome from './Pages/Welcome';
 import Weclome from './Pages/Welcome';
 import { motion } from "framer-motion";
@@ -43,6 +45,8 @@ function App() {
          <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/existinguser" element={<SigninForm />} />
+            <Route path="/forget" element={<Forgetform />}/>
+            <Route path="/newuser" element={<SignUpform />}/>
           </Routes>
       </motion.div>
       </div>
