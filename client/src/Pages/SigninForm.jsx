@@ -13,7 +13,7 @@ function SigninForm() {
           Sign In
         </h1>
         <form>
-          <div className="mx-4 mt-4 p-6 rounded-lg bg-gray-800/50 backdrop-blur-md">
+          <div className="mx-2 mt-4 p-6 rounded-lg">
             
             <TransParentInputs
             label="Username"
