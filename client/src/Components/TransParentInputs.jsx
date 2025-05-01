@@ -12,6 +12,9 @@ function TransParentInputs({
   marginLeft = "0px",
   marginTop = "0px",
   marginBottom = "0px",
+  value, // Add value prop
+  onChange, // Add onChange prop
+  type = "text", // Add type prop (default to "text")
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -24,7 +27,7 @@ function TransParentInputs({
       },
     },
     rest: {
-      x: 0, // Reset position
+      x: 0,
       transition: {
         duration: 0.3,
         ease: "easeInOut",
@@ -77,8 +80,10 @@ function TransParentInputs({
         {label}
       </motion.label>
       <motion.input
-        type="text"
+        type={type} // Use type prop
         id={id}
+        value={value} // Bind value prop
+        onChange={onChange} // Bind onChange prop
         style={{
           height,
           width,

@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Backend Running'));
-app.use('/', authroute);
+app.use('', authroute);
 app.use('/protected', protectedroute);
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const secretKey = crypto.randomBytes(32).toString('hex');
+const {sendWelcomeEmail} = require("../Helpers/mailing")
 
 // User registration
 router.post('/newuser', async (req, res) => {
@@ -17,14 +18,24 @@ if (!username || !email || !password) {
 const hashedPassword = await bcrypt.hash(password, 10);
 const user = new User({ username, email,password: hashedPassword });
 await user.save();
-res.status(201).json({ message: 'User registered successfully' });
+try {
+  await sendWelcomeEmail(username, email);
+  console.log("Welcome email sent to", email);
+} catch (error) {
+  console.error("Error sending welcome email:", error);
+  // Handle the error without interrupting the registration process
+}
+res.status(201).json({ 
+  message: 'User registered successfully'
+ });
 } catch (error) {
 res.status(500).json({ error: 'Registration failed -> '+error });
 }
 });
 
 // User login
-router.post('/exitinguser', async (req, res) => {
+router.post('/existinguser', async (req, res) => {
+  
 try {
 const { username, password } = req.body;
 const user = await User.findOne({ username });

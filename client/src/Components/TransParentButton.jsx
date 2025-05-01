@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
 
-function TransParentButton({ Name = "Default Button", route = "/", height = "50px", width = "150px", fontSize = "1rem" }) {
+function TransParentButton({ Name = "Default Button", route = "", height = "50px", width = "150px", fontSize = "1rem" }) {
 
   const navigate = useNavigate();
 
