@@ -8,6 +8,10 @@ const crypto = require('crypto');
 const secretKey = crypto.randomBytes(32).toString('hex');
 const {sendWelcomeEmail} = require("../Helpers/mailing")
 
+
+router.get('/',(req, res)=>{
+  res.status(200).json("This is auth route")
+})
 // User registration
 router.post('/newuser', async (req, res) => {
 try {
