@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("", authroute);
+app.use("/auth", authroute);
 app.use("/protected", protectedroute);
 
 // Handle undefined routes
