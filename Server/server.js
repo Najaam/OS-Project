@@ -31,6 +31,6 @@ app.use((req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
+app.export(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
