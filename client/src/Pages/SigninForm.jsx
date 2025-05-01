@@ -88,7 +88,7 @@ function SigninForm() {
               id="un"
               label="Username"
               height="40px"
-              width="210px"
+              width="200px"
               fontSize="20px"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -99,7 +99,7 @@ function SigninForm() {
               id="pass"
               label="Password"
               height="40px"
-              width="210px"
+              width="200px"
               fontSize="20px"
               value={password} // Controlled input
               onChange={(e) => setPassword(e.target.value)} // Update state
