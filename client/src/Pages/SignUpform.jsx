@@ -108,7 +108,7 @@ function SignUpform() {
             <TransParentInputs
               label="Username"
               height="40px"
-              width="220px"
+              width="210px"
               fontSize="20px"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -119,7 +119,7 @@ function SignUpform() {
               label="Email"
               height="40px"
               marginLeft="39.5px"
-              width="220px"
+              width="210px"
               fontSize="20px"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -130,7 +130,7 @@ function SignUpform() {
               label="Password"
               height="40px"
               marginLeft="8px"
-              width="220px"
+              width="210px"
               fontSize="20px"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
