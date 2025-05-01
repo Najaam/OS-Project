@@ -100,6 +100,7 @@ function SigninForm() {
               label="Password"
               height="40px"
               width="200px"
+              marginLeft="10px"
               fontSize="20px"
               value={password} // Controlled input
               onChange={(e) => setPassword(e.target.value)} // Update state

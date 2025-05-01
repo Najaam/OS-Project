@@ -118,7 +118,7 @@ function SignUpform() {
             <TransParentInputs
               label="Email"
               height="40px"
-              marginLeft="39.5px"
+              marginLeft="41px"
               width="200px"
               fontSize="20px"
               value={email}
