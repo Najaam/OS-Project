@@ -1,26 +1,27 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const db = require("./Db");
 const authroute = require("./Routes/Authroutes");
 const protectedroute = require("./Routes/Protectedroute");
 const app = express();
-const { port } = require('./config');
+const { port } = require("./config");
 const PORT = port;
+
 
 // Middleware
 app.use(express.json());
 app.use(cors());
 
 // Root route
-app.get('/', (req, res) => {
-  res.status(200).send({
-    message: "Welcome to the backend of Jade OS! Everything is running smoothly.",
-  });
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .json("Welcome to the backend of Jade OS! Everything is running smoothly.");
 });
 
 // Routes
-app.use('', authroute);
-app.use('/protected', protectedroute);
+app.use("", authroute);
+app.use("/protected", protectedroute);
 
 // Handle undefined routes
 app.use((req, res) => {
