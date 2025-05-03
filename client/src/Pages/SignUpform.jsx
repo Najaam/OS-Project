@@ -71,7 +71,7 @@ function SignUpform() {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/newuser', // API endpoint
+        'https://os-project-server.vercel.app/auth/newuser', // API endpoint
         { username, email, password },
         { headers: { 'Content-Type': 'application/json' } }
       );
