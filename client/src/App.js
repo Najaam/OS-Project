@@ -1,7 +1,8 @@
 import "./App.css";
 import ProtectedRoute from "./Components/Protectedroute";
-import Forgetform from "./Pages/Forgetform";
+import Forgotform from "./Pages/Forgotform";
 import Home from "./Pages/Home";
+import NotFound from "./Pages/Notfound";
 import SigninForm from "./Pages/SigninForm";
 import SignUpform from "./Pages/SignUpform";
 import Welcome from "./Pages/Welcome";
@@ -25,14 +26,14 @@ function App() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          initial={{ scale: 1.2, opacity: 0.6 }}
-          animate={{ scale: 1.0, opacity: 1 }}
+          initial={{  opacity: 0.6 }}
+          animate={{  opacity: 1 }}
           transition={{ duration: 10, repeatType: "reverse" }}
         >
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/existinguser" element={<SigninForm />} />
-            <Route path="/forget" element={<Forgetform />} />
+            <Route path="/forget-password" element={<Forgotform />} />
             <Route path="/newuser" element={<SignUpform />} />
             <Route
               path="/home"
@@ -42,6 +43,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* Catch-all route for 404 */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </motion.div>
       </div>

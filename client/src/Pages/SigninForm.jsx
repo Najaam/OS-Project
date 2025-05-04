@@ -50,7 +50,7 @@ function SigninForm() {
       );
 
       if (response.status === 200) {
-        toast.success("Registration Successful!", {
+        toast.success("Login Successful!", {
           position: "top-right",
           duration: 5000,
         });
@@ -120,7 +120,7 @@ function SigninForm() {
               whileHover={{ x: -5, y: -5 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Link to="/forgot" className="text-white text-decoration-none">
+              <Link to="/forget-password" className="text-white text-decoration-none">
                 Forgot Password?
               </Link>
             </motion.div>

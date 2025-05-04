@@ -102,7 +102,7 @@ function SignUpform() {
       style={{ backgroundColor: 'transparent', overflow: 'hidden' }}
     >
       <div className="rounded p-4 bg-dark bg-opacity-75 backdrop-blur shadow-lg">
-        <h1 className="text-3xl font-bold text-center text-white mb-6">Sign In</h1>
+        <h1 className="text-3xl font-bold text-center text-white mb-6">Sign Up</h1>
         <form onSubmit={handleRegister}>
           <div className="mt-4 mx-2 p-6 rounded-lg">
             <TransParentInputs
