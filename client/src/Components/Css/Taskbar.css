@@ -1,0 +1,83 @@
+/* Custom Animations */
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  
+  /* Glass Effect */
+  .bg-glass {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Taskbar Animations */
+  .taskbar-wrapper {
+    animation: slideUp 0.3s ease-out;
+    height: 50px;
+    z-index: 1000;
+  }
+  
+  /* Hover Effects */
+  .hover-scale {
+    transition: transform 0.2s ease;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.1);
+  }
+  
+  .hover-glow {
+    transition: all 0.2s ease;
+  }
+  
+  .hover-glow:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  /* System Tray Icons */
+  .system-tray-icon {
+    padding: 5px;
+    border-radius: 4px;
+  }
+  
+  /* Clock Display */
+  .clock-display {
+    background: rgba(255, 255, 255, 0.1);
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
+  
+  /* Taskbar Icons */
+  .taskbar-icon {
+    position: relative;
+    min-width: 32px;
+    text-align: center;
+  }
+  
+  .taskbar-icon:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+  }
+  
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    .taskbar-wrapper {
+      height: 45px;
+    }
+    
+    .clock-display {
+      font-size: 0.8rem;
+    }
+    
+    .system-tray-icon {
+      padding: 3px;
+    }
+  }

@@ -10,34 +10,14 @@ const NotFound = () => {
     overflow: "hidden",
   };
 
-  const glitchBeforeAfterStyles = {
-    content: '"404"',
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: -1,
-  };
 
-  const glitchBeforeStyles = {
-    ...glitchBeforeAfterStyles,
-    color: "#ff3b3b",
-    animation: "glitch-anim 1s infinite linear alternate-reverse",
-  };
-
-  const glitchAfterStyles = {
-    ...glitchBeforeAfterStyles,
-    color: "#3bff3b",
-    animation: "glitch-anim2 1s infinite linear alternate-reverse",
-  };
-
+ 
   return (
     <div className="text-white position-relative w-100 vh-100 d-flex flex-column align-items-center justify-content-center">
       <h1 style={glitchTextStyles}>
         404
       </h1>
-      <p style={glitchTextStyles} >Page Not Found</p>
+      <p style={glitchTextStyles}>Page Not Found</p>
       <style>
         {`
         @keyframes glitch {
