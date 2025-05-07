@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Terminal } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
+import { Rnd } from 'react-rnd';
 import './Css/Terminal.css';
 
 const TerminalComponent = ({ onClose, isVisible }) => {
@@ -19,7 +20,7 @@ const TerminalComponent = ({ onClose, isVisible }) => {
 
   useEffect(() => {
     if (!isVisible || !terminalRef.current) return;
-
+  
     if (!terminal.current) {
       terminal.current = new Terminal({
         fontSize: 14,
@@ -29,29 +30,31 @@ const TerminalComponent = ({ onClose, isVisible }) => {
           background: '#1a1a1a',
         },
       });
-
+  
       terminal.current.loadAddon(fitAddon.current);
       terminal.current.open(terminalRef.current);
-
+  
+      // Wait until DOM is painted and has layout
       const fitSafely = () => {
         const container = terminalRef.current;
         if (container && container.offsetWidth > 0 && container.offsetHeight > 0) {
           try {
             fitAddon.current.fit();
           } catch (err) {
-            console.error('Safe fit error:', err);
+            console.error("Safe fit error:", err);
           }
         } else {
+          // Retry after a frame if dimensions are still zero
           requestAnimationFrame(fitSafely);
         }
       };
-
+  
       requestAnimationFrame(fitSafely);
-
+  
       terminal.current.write(`Welcome to Jade OS Terminal!\r\n${username}@JadeOS:${currentPath} $ `);
       terminal.current.onData(handleInput);
     }
-
+  
     return () => {
       if (terminal.current) {
         terminal.current.dispose();
@@ -59,7 +62,9 @@ const TerminalComponent = ({ onClose, isVisible }) => {
       }
     };
   }, [isVisible, currentPath, username]);
+  
 
+  // ResizeObserver to keep terminal sized
   useEffect(() => {
     const observer = new ResizeObserver(() => {
       if (terminal.current) {
@@ -213,13 +218,25 @@ const TerminalComponent = ({ onClose, isVisible }) => {
   if (!isVisible) return null;
 
   return (
-    <div
+    <Rnd
+      default={{ x: 50, y: 50, width: 800, height: 400 }}
+      minWidth={300}
+      minHeight={200}
+      bounds="parent"
+      onResizeStop={() => {
+        const container = terminalRef.current;
+        requestAnimationFrame(() => {
+          if (container && container.offsetWidth > 0 && container.offsetHeight > 0 && terminal.current) {
+            try {
+              fitAddon.current.fit();
+            } catch (err) {
+              console.error("Resize fit error:", err);
+            }
+          }
+        });
+      }}
+      
       style={{
-        position: 'absolute',
-        top: 50,
-        left: 50,
-        width: 800,
-        height: 400,
         backgroundColor: '#1a1a1a',
         borderRadius: '8px',
         overflow: 'hidden',
@@ -272,7 +289,7 @@ const TerminalComponent = ({ onClose, isVisible }) => {
       >
         <div ref={terminalRef} style={{ width: '100%', height: '100%' }} />
       </div>
-    </div>
+    </Rnd>
   );
 };
 
