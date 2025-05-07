@@ -56,6 +56,7 @@ function SigninForm() {
         });
         console.log("Login Successful:", response.data);
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("username", username);
         setTimeout(() => {
           navigate("/home");
         }, 1000);
