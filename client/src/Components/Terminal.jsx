@@ -4,12 +4,11 @@ import { FitAddon } from 'xterm-addon-fit';
 import { Rnd } from 'react-rnd';
 import './Css/Terminal.css';
 
-const TerminalComponent = ({ onClose, isVisible }) => {
+const TerminalComponent = ({ onClose, isVisible, fileSystem, setFileSystem, addFolder }) => {
   const terminalRef = useRef(null);
   const terminal = useRef(null);
   const fitAddon = useRef(new FitAddon());
   const inputBuffer = useRef('');
-  const [fileSystem, setFileSystem] = useState({ '/': {} });
   const [currentPath, setCurrentPath] = useState('/');
   const [username, setUsername] = useState('user');
 
@@ -20,7 +19,7 @@ const TerminalComponent = ({ onClose, isVisible }) => {
 
   useEffect(() => {
     if (!isVisible || !terminalRef.current) return;
-  
+
     if (!terminal.current) {
       terminal.current = new Terminal({
         fontSize: 14,
@@ -30,11 +29,10 @@ const TerminalComponent = ({ onClose, isVisible }) => {
           background: '#1a1a1a',
         },
       });
-  
+
       terminal.current.loadAddon(fitAddon.current);
       terminal.current.open(terminalRef.current);
-  
-      // Wait until DOM is painted and has layout
+
       const fitSafely = () => {
         const container = terminalRef.current;
         if (container && container.offsetWidth > 0 && container.offsetHeight > 0) {
@@ -44,17 +42,16 @@ const TerminalComponent = ({ onClose, isVisible }) => {
             console.error("Safe fit error:", err);
           }
         } else {
-          // Retry after a frame if dimensions are still zero
           requestAnimationFrame(fitSafely);
         }
       };
-  
+
       requestAnimationFrame(fitSafely);
-  
+
       terminal.current.write(`Welcome to Jade OS Terminal!\r\n${username}@JadeOS:${currentPath} $ `);
       terminal.current.onData(handleInput);
     }
-  
+
     return () => {
       if (terminal.current) {
         terminal.current.dispose();
@@ -62,9 +59,7 @@ const TerminalComponent = ({ onClose, isVisible }) => {
       }
     };
   }, [isVisible, currentPath, username]);
-  
 
-  // ResizeObserver to keep terminal sized
   useEffect(() => {
     const observer = new ResizeObserver(() => {
       if (terminal.current) {
@@ -174,9 +169,13 @@ const TerminalComponent = ({ onClose, isVisible }) => {
 
   const makeDirectory = (path, dirName) => {
     const dir = getDirectory(path);
+    const fullPath = `${path.replace(/\/$/, '')}/${dirName}`;
     if (dir && !dir[dirName]) {
       dir[dirName] = {};
       setFileSystem({ ...fileSystem });
+      if (addFolder) {
+        addFolder({ name: dirName, path: fullPath });
+      }
     }
   };
 
@@ -223,19 +222,6 @@ const TerminalComponent = ({ onClose, isVisible }) => {
       minWidth={300}
       minHeight={200}
       bounds="parent"
-      onResizeStop={() => {
-        const container = terminalRef.current;
-        requestAnimationFrame(() => {
-          if (container && container.offsetWidth > 0 && container.offsetHeight > 0 && terminal.current) {
-            try {
-              fitAddon.current.fit();
-            } catch (err) {
-              console.error("Resize fit error:", err);
-            }
-          }
-        });
-      }}
-      
       style={{
         backgroundColor: '#1a1a1a',
         borderRadius: '8px',
@@ -254,39 +240,12 @@ const TerminalComponent = ({ onClose, isVisible }) => {
         }}
       >
         <div style={{ display: 'flex', gap: '8px' }}>
-          <div
-            title="Close"
-            onClick={onClose}
-            style={{
-              width: '12px',
-              height: '12px',
-              backgroundColor: '#ff5f56',
-              borderRadius: '50%',
-              cursor: 'pointer',
-            }}
-          />
-          <div
-            style={{
-              width: '12px',
-              height: '12px',
-              backgroundColor: '#ffbd2e',
-              borderRadius: '50%',
-            }}
-          />
-          <div
-            style={{
-              width: '12px',
-              height: '12px',
-              backgroundColor: '#27c93f',
-              borderRadius: '50%',
-            }}
-          />
+          <div title="Close" onClick={onClose} style={{ width: 12, height: 12, backgroundColor: '#ff5f56', borderRadius: '50%', cursor: 'pointer' }} />
+          <div style={{ width: 12, height: 12, backgroundColor: '#ffbd2e', borderRadius: '50%' }} />
+          <div style={{ width: 12, height: 12, backgroundColor: '#27c93f', borderRadius: '50%' }} />
         </div>
       </div>
-      <div
-        className="terminal-container"
-        style={{ width: '100%', height: 'calc(100% - 30px)' }}
-      >
+      <div className="terminal-container" style={{ width: '100%', height: 'calc(100% - 30px)' }}>
         <div ref={terminalRef} style={{ width: '100%', height: '100%' }} />
       </div>
     </Rnd>
