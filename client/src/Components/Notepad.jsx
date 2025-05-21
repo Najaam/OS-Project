@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Notepad = ({ isVisible, onClose, file, onSave }) => {
   const [text, setText] = useState(file?.content || "");
+  const wrapperRef = useRef(null);
+
+  // Drag state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: window.innerWidth / 8, y: window.innerHeight / 8 });
 
   useEffect(() => {
-    // Update the text if the file changes
     setText(file?.content || "");
   }, [file]);
 
@@ -12,13 +17,49 @@ const Notepad = ({ isVisible, onClose, file, onSave }) => {
 
   const handleSave = () => {
     if (file) {
-      onSave(file.name, text); // Save the file with the new content
+      onSave(file.name, text);
     }
+  };
+
+  // Drag handlers
+  const onMouseDownDrag = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    });
+  };
+
+  const onMouseMoveDrag = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const newX = e.clientX - dragStart.x;
+    const newY = e.clientY - dragStart.y;
+
+    const wrapper = wrapperRef.current;
+    if (wrapper) {
+      const maxX = window.innerWidth - wrapper.offsetWidth;
+      const maxY = window.innerHeight - wrapper.offsetHeight;
+
+      setPosition({
+        x: Math.min(Math.max(0, newX), maxX),
+        y: Math.min(Math.max(0, newY), maxY),
+      });
+    } else {
+      setPosition({ x: newX, y: newY });
+    }
+  };
+
+  const onMouseUpDrag = () => {
+    setIsDragging(false);
   };
 
   return (
     <div
-      className="notepad-wrapper position-fixed w-75 h-75"
+      ref={wrapperRef}
+      className="notepad-wrapper position-fixed"
       style={{
         zIndex: 1000,
         backgroundColor: "white",
@@ -27,7 +68,16 @@ const Notepad = ({ isVisible, onClose, file, onSave }) => {
         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.3)",
         display: "flex",
         flexDirection: "column",
+        width: "75vw",
+        height: "75vh",
+        top: position.y,
+        left: position.x,
+        cursor: isDragging ? "grabbing" : "default",
+        userSelect: isDragging ? "none" : "auto",
       }}
+      onMouseMove={onMouseMoveDrag}
+      onMouseUp={onMouseUpDrag}
+      onMouseLeave={onMouseUpDrag}
     >
       {/* Notepad Header */}
       <div
@@ -39,7 +89,10 @@ const Notepad = ({ isVisible, onClose, file, onSave }) => {
           fontWeight: "bold",
           display: "flex",
           justifyContent: "space-between",
+          cursor: "grab",
+          userSelect: "none",
         }}
+        onMouseDown={onMouseDownDrag}
       >
         <span>{file?.name || "Untitled Notepad"}</span>
         <div>

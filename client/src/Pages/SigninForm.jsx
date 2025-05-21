@@ -65,7 +65,7 @@ function SigninForm() {
       console.error("Login Error:", error);
       toast.error(
         error.response?.data?.message ||
-          "Registration failed. Please try again.",
+          "Login failed. Please try again.",
         {
           position: "top-right",
           duration: 5000,

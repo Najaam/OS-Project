@@ -35,7 +35,9 @@ function Taskbar({ onAppClick }) {
     { name: 'Browser', icon: '🌐' },
     { name: 'Paint', icon: '🎨' },
     { name: 'Terminal', icon: '💻' },
+    { name: 'Task Manager', icon: '🛠️' },
   ];
+  
 
   const handleAppClick = (appName) => {
     onAppClick(appName); // Call the onAppClick function passed down from Home

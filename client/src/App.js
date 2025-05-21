@@ -30,6 +30,7 @@ function App() {
           animate={{  opacity: 1 }}
           transition={{ duration: 10, repeatType: "reverse" }}
         >
+          
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path="/existinguser" element={<SigninForm />} />
