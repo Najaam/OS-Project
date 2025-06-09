@@ -28,14 +28,11 @@ function Taskbar({ onAppClick }) {
     });
   };
 
-  const systemTrayIcons = ['📶', '🔊'];
+  const systemTrayIcons = ['📶'];
   const taskApps = [
-    { name: 'File Explorer', icon: '📁' },
     { name: 'Notepad', icon: '📝' },
-    { name: 'Browser', icon: '🌐' },
     { name: 'Paint', icon: '🎨' },
     { name: 'Terminal', icon: '💻' },
-    { name: 'Task Manager', icon: '🛠️' },
   ];
   
 

@@ -21,7 +21,7 @@ function App() {
           className="position-absolute top-0 start-0 w-100 h-100"
           style={{
             backgroundImage:
-              "url('https://img.itch.zone/aW1nLzEzNzczMjU3LmdpZg==/original/W%2Fd8%2BO.gif')",
+              "url('https://4kwallpapers.com/images/wallpapers/windows-11-stock-grey-abstract-dark-background--8957.png')",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center",
