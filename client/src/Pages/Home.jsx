@@ -4,6 +4,7 @@ import TerminalComponent from "../Components/Terminal";
 import NotepadComponent from "../Components/Notepad";
 import Paintapp from "../Components/Paint";
 import TaskManager from "../Components/Taskmanager";
+import Model from "../Components/Model";
 
 function Home() {
   const [openApps, setOpenApps] = useState([]);

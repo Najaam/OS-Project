@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Powerbtn from "./Powerbtn";
 import "./Css/Taskbar.css";
 import { useNavigate } from "react-router-dom";
+import Modal from "./Model";
 
 function Taskbar({ onAppClick }) {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
   const [time, setTime] = useState(new Date());
   const [activeApp, setActiveApp] = useState(null);
@@ -28,7 +30,7 @@ function Taskbar({ onAppClick }) {
     });
   };
 
-  const systemTrayIcons = ['📶'];
+  const systemTrayIcons = ['📶' ];
   const taskApps = [
     { name: 'Notepad', icon: '📝' },
     { name: 'Paint', icon: '🎨' },
